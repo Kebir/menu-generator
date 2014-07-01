@@ -4,7 +4,7 @@ namespace Kebir\Menu\Repository;
 
 use Kebir\Menu\Eloquent\Menu;
 
-class EloquentMenuRepository
+class EloquentMenuRepository implements MenuRepository
 {
     protected $menu;
 

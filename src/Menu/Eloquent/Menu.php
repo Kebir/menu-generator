@@ -2,7 +2,9 @@
 
 namespace Kebir\Menu\Eloquent;
 
-class Menu extends Illuminate\Database\Eloquent\Model
+use Illuminate\Database\Eloquent\Model;
+
+class Menu extends Model
 {
 
 }
