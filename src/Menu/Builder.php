@@ -1,26 +1,15 @@
 <?php
 
-namespace Kebir\Menu\MenuBuilder;
+namespace Kebir\Menu;
 
-use Kebir\Menu\MenuItem;
-use Kebir\Menu\MenuItemsList;
 use Kebir\Menu\Repository\MenuRepository;
 
 class Builder
 {
-    protected $menu_repository;
-
     private $processed_menus = [];
 
-    public function __construct(MenuRepository $menu_repository)
+    public function build($menus)
     {
-        $this->menu_repository = $menu_repository;
-    }
-
-    public function build()
-    {
-        $menus = $this->menu_repository->getAll();
-
         $menus_built = $this->buildFromList($menus);
 
         $this->clearProcessedMenus();
@@ -35,17 +24,14 @@ class Builder
             if (!$this->isProcessed($menu) && $menu['parent_id'] == $parent) {
                 $children = $this->buildFromList($menus_list, $menu['id']);
 
-                if ($children) {
-                    $list = new MenuItemsList($menu['name'], $menu['url']);
+                $item = new MenuItem($menu['name'], $menu['url']);
 
-                    foreach ($children as $child) {
-                        $list->add($child);
-                    }
-
-                    $menus[] = $list;
-                } else {
-                    $menus[] = new MenuItem($menu['name'], $menu['url']);
+                foreach ($children as $child) {
+                    $item->add($child);
                 }
+
+                $menus[] = $item;
+
                 $this->setProcessed($menu);
             }
         }

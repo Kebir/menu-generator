@@ -15,6 +15,11 @@ class MenuItem
     protected $url;
 
     /**
+     * @var array
+     */
+    protected $sub_items = [];
+
+    /**
      * @param string $name
      * @param string $url
      */
@@ -62,5 +67,25 @@ class MenuItem
     public function setUrl($url)
     {
         $this->url = $url;
+    }
+
+    /**
+     * Adds a new item to the menu.
+     *
+     * @return string.
+     */
+    public function add(MenuItem $item)
+    {
+        $this->sub_items[] = $item;
+    }
+
+    /**
+     * Returns the list of items.
+     *
+     * @return array
+     */
+    public function getElements()
+    {
+        return $this->sub_items;
     }
 }
