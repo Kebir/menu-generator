@@ -19,9 +19,5 @@
             "Kebir\\": "src/"
         },
         "classmap": ["tests"]
-    },
-
-    "suggest": {
-        "illuminate/database": "Allows easier integration of the app with laravel framework"
     }
 }
