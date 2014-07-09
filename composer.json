@@ -1,9 +1,10 @@
 {
     "name": "kebir/menu-generator",
     "description": "Simple Menu Generator",
+    "license": "MIT",
     "authors": [
         {
-            "name": "Kebir Ba",
+            "name": "Mohamed El Kebir Ba",
             "email": "keb@about.me"
         }
     ],
