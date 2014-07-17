@@ -3,20 +3,21 @@
 namespace Kebir\Menu\Renderer;
 
 use Kebir\Menu\MenuItem;
+use Kebir\Menu\Selector\Selector;
 
 class HtmlListRenderer implements MenuRenderer
 {
     /**
-     * @var string
+     * @var Kebir\Menu\Selector\Selector
      */
-    protected $current_path;
+    protected $selector;
 
     /**
-     * @param string $current_url The current page url.
+     * @param Kebir\Menu\Selector\Selector $selector The menu selector.
      */
-    public function __construct($current_url)
+    public function __construct(Selector $selector)
     {
-        $this->current_path = parse_url($current_url, PHP_URL_PATH) ?: '/';
+        $this->selector = $selector;
     }
 
     /**
@@ -66,9 +67,6 @@ class HtmlListRenderer implements MenuRenderer
 
     /**
      * Check if a menu is selected.
-     * A menu is considered as selected if his url match the current url
-     * provided in the constructor of the renderer, or if one of
-     * the children is selected.
      *
      * @param  MenuItem $menu
      * @param  string   $children_output
@@ -77,6 +75,6 @@ class HtmlListRenderer implements MenuRenderer
      */
     protected function isSelectedMenu(MenuItem $menu, $children_output)
     {
-        return $this->current_path === $menu->getUrl() || strpos($children_output, 'selected') !== false;
+        return strpos($children_output, 'selected') !== false || $this->selector->isSelected($menu);
     }
 }

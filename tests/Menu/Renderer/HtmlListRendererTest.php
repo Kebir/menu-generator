@@ -2,6 +2,7 @@
 
 use Kebir\Menu\MenuItem;
 use Kebir\Menu\Renderer\HtmlListRenderer;
+use Kebir\Menu\Selector\SimpleUrlSelector;
 
 class HtmlListRendererTest extends PHPUnit_Framework_TestCase
 {
@@ -15,8 +16,10 @@ class HtmlListRendererTest extends PHPUnit_Framework_TestCase
         $sub_menu = new MenuItem('Menu 2', '/url2');
         $menu->add($sub_menu);
 
+        $selector = new SimpleUrlSelector('http://test.com/url2');
+
         //Render the menu
-        $renderer = new HtmlListRenderer('http://test.com/url2');
+        $renderer = new HtmlListRenderer($selector);
         $output = $renderer->render($menu);
 
         //Prepare the expectations.
