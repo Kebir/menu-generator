@@ -1,7 +1,7 @@
 <?php
 
-use Kebir\Menu\Builder;
-use Kebir\Menu\MenuItem;
+use Kebir\MenuGenerator\Builder;
+use Kebir\MenuGenerator\MenuItem;
 
 class BuilderTest extends PHPUnit_Framework_TestCase
 {
@@ -10,14 +10,14 @@ class BuilderTest extends PHPUnit_Framework_TestCase
      */
     public function it_builds_a_list_of_menu()
     {
-        $menus = [
-            ["id" => 1, "name" => "Menu 1", "url" => "url1", "parent_id" => 3],
-            ["id" => 2, "name" => "Menu 2", "url" => "url2", "parent_id" => 0],
-            ["id" => 3, "name" => "Menu 3", "url" => "url3", "parent_id" => 0],
-            ["id" => 4, "name" => "Menu 4", "url" => "url4", "parent_id" => 2],
-            ["id" => 5, "name" => "Menu 5", "url" => "url5", "parent_id" => 3],
-            ["id" => 6, "name" => "Menu 6", "url" => "url6", "parent_id" => 1],
-        ];
+        $menus = array(
+            array("id" => 1, "name" => "Menu 1", "url" => "url1", "parent_id" => 3),
+            array("id" => 2, "name" => "Menu 2", "url" => "url2", "parent_id" => 0),
+            array("id" => 3, "name" => "Menu 3", "url" => "url3", "parent_id" => 0),
+            array("id" => 4, "name" => "Menu 4", "url" => "url4", "parent_id" => 2),
+            array("id" => 5, "name" => "Menu 5", "url" => "url5", "parent_id" => 3),
+            array("id" => 6, "name" => "Menu 6", "url" => "url6", "parent_id" => 1),
+        );
         $builder = new Builder();
         $menu_built = $builder->build($menus);
 
@@ -37,6 +37,6 @@ class BuilderTest extends PHPUnit_Framework_TestCase
         $menu3->add($menu5);
 
 
-        $this->assertEquals([$menu2, $menu3], $menu_built);
+        $this->assertEquals(array($menu2, $menu3), $menu_built);
     }
 }

@@ -1,15 +1,15 @@
 <?php
 
-namespace Kebir\Menu;
+namespace Kebir\MenuGenerator;
 
-use Kebir\Menu\Repository\MenuRepository;
+use Kebir\MenuGenerator\Repository\MenuRepository;
 
 class Builder
 {
     /**
      * @var array
      */
-    private $processed_menus = [];
+    private $processed_menus = array();
 
     /**
      * Builds a list of MenuItem object given an array of menus informations.
@@ -42,7 +42,7 @@ class Builder
      */
     protected function buildFromList($menus_list, $parent = 0)
     {
-        $menus = [];
+        $menus = array();
         foreach ($menus_list as $menu) {
             //Process only if the menu was not already processed
             //and it belongs to the parent id we are building.
@@ -92,6 +92,6 @@ class Builder
      */
     private function clearProcessedMenus()
     {
-        $this->processed_menus = [];
+        $this->processed_menus = array();
     }
 }

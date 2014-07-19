@@ -1,19 +1,19 @@
 <?php
 
-namespace Kebir\Menu\Renderer;
+namespace Kebir\MenuGenerator\Renderer;
 
-use Kebir\Menu\MenuItem;
-use Kebir\Menu\Selector\Selector;
+use Kebir\MenuGenerator\MenuItem;
+use Kebir\MenuGenerator\Selector\Selector;
 
 class HtmlListRenderer implements MenuRenderer
 {
     /**
-     * @var Kebir\Menu\Selector\Selector
+     * @var Kebir\MenuGenerator\Selector\Selector
      */
     protected $selector;
 
     /**
-     * @param Kebir\Menu\Selector\Selector $selector The menu selector.
+     * @param Kebir\MenuGenerator\Selector\Selector $selector The menu selector.
      */
     public function __construct(Selector $selector)
     {

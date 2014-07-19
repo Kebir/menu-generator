@@ -1,6 +1,6 @@
 <?php
 
-namespace Kebir\Menu;
+namespace Kebir\MenuGenerator;
 
 class MenuItem
 {
@@ -17,7 +17,7 @@ class MenuItem
     /**
      * @var array
      */
-    protected $sub_items = [];
+    protected $sub_items = array();
 
     /**
      * @param string $name

@@ -3,7 +3,7 @@ Menu Generator
 Installations
 ----------------
 Install through composer:
-    
+
     composer require kebir/menu-generator:dev-master
 
 Usage
@@ -23,7 +23,7 @@ $menus = [
 ];
 
 //Let's build a hierarchical menus list
-$builder = new Kebir\Menu\Builder();
+$builder = new Kebir\MenuGenerator\Builder();
 $menus_generated = $builder->build($menus);
 
 //Check the output
@@ -43,7 +43,7 @@ foreach ($menus as $menu) {
 
 ```
 
-If you want to display the menu, the package provides a HtmlListRenderer 
+If you want to display the menu, the package provides a HtmlListRenderer
 class that will display the menus using html &lt;ul&gt; and &lt;li&gt; tags:
 
 ```php
@@ -70,11 +70,11 @@ The package includes a Service Provider and a Facade for the Renderer:
 //config/app.php
 
   //Add the service provider
-  'Kebir\Menu\MenuServiceProvider'
+  'Kebir\MenuGenerator\MenuServiceProvider'
   ...
   //add the facade alias
-  'MenuRenderer'    => 'Kebir\Menu\Facades\Renderer'
-  
+  'MenuRenderer'    => 'Kebir\MenuGenerator\Facades\Renderer'
+
 ```
 To use it, simply call the following in your blade template for example:
 

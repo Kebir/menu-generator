@@ -1,8 +1,8 @@
 <?php
 
-namespace Kebir\Menu\Renderer;
+namespace Kebir\MenuGenerator\Renderer;
 
-use Kebir\Menu\MenuItem;
+use Kebir\MenuGenerator\MenuItem;
 
 interface MenuRenderer
 {

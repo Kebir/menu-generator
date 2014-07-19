@@ -1,8 +1,8 @@
 <?php
 
-use Kebir\Menu\MenuItem;
-use Kebir\Menu\Renderer\HtmlListRenderer;
-use Kebir\Menu\Selector\SimpleUrlSelector;
+use Kebir\MenuGenerator\MenuItem;
+use Kebir\MenuGenerator\Renderer\HtmlListRenderer;
+use Kebir\MenuGenerator\Selector\SimpleUrlSelector;
 
 class HtmlListRendererTest extends PHPUnit_Framework_TestCase
 {
@@ -23,31 +23,31 @@ class HtmlListRendererTest extends PHPUnit_Framework_TestCase
         $output = $renderer->render($menu);
 
         //Prepare the expectations.
-        $matcher1 = [
+        $matcher1 = array(
             'tag' => 'li',
-            'attributes' => ['class' => 'kebir-menu level-1 selected has-sub-menu'],
-            'child' => [
+            'attributes' => array('class' => 'kebir-menu level-1 selected has-sub-menu'),
+            'child' => array(
                 'tag' => 'ul',
-                'attributes' => ['class' => 'kebir-sub-menu'],
-                'child' => [
+                'attributes' => array('class' => 'kebir-sub-menu'),
+                'child' => array(
                     'tag' => 'li',
-                    'attributes' => ['class' => 'kebir-menu level-2 selected']
-                ]
-            ]
-        ];
-        $matcher2 = [
+                    'attributes' => array('class' => 'kebir-menu level-2 selected')
+                )
+            )
+        );
+        $matcher2 = array(
             'tag' => 'li',
-            'child' => [
+            'child' => array(
                 'tag' => 'a',
-                'attributes' => ['href' => '/url1'],
+                'attributes' => array('href' => '/url1'),
                 'content' => 'Menu 1'
-            ],
-            'descendant' => [
+            ),
+            'descendant' => array(
                 'tag' => 'a',
-                'attributes' => ['href' => '/url2'],
+                'attributes' => array('href' => '/url2'),
                 'content' => 'Menu 2'
-            ],
-        ];
+            ),
+        );
 
         $this->assertTag($matcher1, $output);
         $this->assertTag($matcher2, $output);

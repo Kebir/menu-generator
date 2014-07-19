@@ -1,8 +1,8 @@
 <?php
 
-namespace Kebir\Menu\Selector;
+namespace Kebir\MenuGenerator\Selector;
 
-use Kebir\Menu\MenuItem;
+use Kebir\MenuGenerator\MenuItem;
 
 interface Selector
 {

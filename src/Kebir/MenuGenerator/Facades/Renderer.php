@@ -1,6 +1,6 @@
 <?php
 
-namespace Kebir\Menu\Facades;
+namespace Kebir\MenuGenerator\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

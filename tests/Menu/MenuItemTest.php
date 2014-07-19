@@ -1,6 +1,6 @@
 <?php
 
-use Kebir\Menu\MenuItem;
+use Kebir\MenuGenerator\MenuItem;
 
 class MenuItemTest extends PHPUnit_Framework_TestCase
 {
@@ -25,6 +25,6 @@ class MenuItemTest extends PHPUnit_Framework_TestCase
         $menu->add($sub_menu1);
         $menu->add($sub_menu2);
 
-        $this->assertEquals([$sub_menu1, $sub_menu2], $menu->getElements());
+        $this->assertEquals(array($sub_menu1, $sub_menu2), $menu->getElements());
     }
 }
