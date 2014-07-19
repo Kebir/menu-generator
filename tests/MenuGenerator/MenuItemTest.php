@@ -14,6 +14,9 @@ class MenuItemTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('http://test.com', $menu->getUrl());
     }
 
+    /**
+     * @test
+     */
     public function it_returns_a_list_of_sub_menus()
     {
         $menu = new MenuItem('menu', 'url');
