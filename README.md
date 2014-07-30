@@ -4,7 +4,11 @@ Installations
 ----------------
 Install through composer:
 
-    composer require kebir/menu-generator:dev-master
+    {
+        require: {
+            "kebir/menu-generator": "dev-master"
+        }
+    }
 
 Usage
 ---------
@@ -44,13 +48,16 @@ foreach ($menus as $menu) {
 ```
 
 If you want to display the menu, the package provides a HtmlListRenderer
-class that will display the menus using html &lt;ul&gt; and &lt;li&gt; tags:
+class that will display the menus using html &lt;ul&gt; and &lt;li&gt; tags.
+The class requires an instance of `Kebir\MenuGenerator\Selector\Selector` which
+is responsible of detecting if a menu should considered as selected.
 
 ```php
 <?php
 
 $current_url = 'http://test.com/page1';
-$renderer = new Kebir\Renderer\HtmlListRenderer($current_url);
+$simple_selector = new Kebir\MenuGenerator\Selector\SimpleUrlSelector($current_url);
+$renderer = new Kebir\MenuGenerator\Renderer\HtmlListRenderer($simple_selector);
 echo "<ul>";
 foreach ($menus as $menu) {
     $renderer->render($menu);
@@ -62,15 +69,12 @@ echo "</ul>";
 Laravel Users
 -------------------
 
-The package includes a Service Provider and a Facade for the Renderer:
-
+The package includes a Service Provider and a Facade for the Renderer. Edit the `app/config/app.php`:
 ```php
 <?php
 
-//config/app.php
-
   //Add the service provider
-  'Kebir\MenuGenerator\MenuServiceProvider'
+  'Kebir\MenuGenerator\MenuGeneratorServiceProvider'
   ...
   //add the facade alias
   'MenuRenderer'    => 'Kebir\MenuGenerator\Facades\Renderer'
@@ -79,3 +83,30 @@ The package includes a Service Provider and a Facade for the Renderer:
 To use it, simply call the following in your blade template for example:
 
     {{ MenuRender::render($menu) }}
+
+### Menu Selection
+To mark a menu as selected, you can use the `Kebir\MenuGenerator\Selector\SimpleUrlSelector` class when creating the menu renderer.
+
+For laravel users, the service provider is configured to include the `Kebir\MenuGenerator\Selector\LaravelSelector` instead. This will allow you, in the config file provided, to define which entry in the menu should be selected when a page is reached. 
+
+This is very useful when the current page is not in the menu but is related to another url which is in the menu. Here is an example of usage for the [`config/config.php`](https://github.com/Kebir/menu-generator/blob/dev/src/config/config.php) file
+
+```php
+<?php
+return array(
+   //To link /users/1/edit to another url /users in the menu.
+   'linked_urls' => array(
+        '/users/1/edit' => '/users'
+    ),
+    
+    //To link an action to an url
+    'linked_actions' => array(
+        'UsersController@edit' => '/users'
+    ),
+    
+    //To link a route to an url
+    'linked_routes' => array(
+        'user_edit_path' => '/users'
+    )
+);
+```
