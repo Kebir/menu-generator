@@ -2,8 +2,6 @@
 
 namespace Kebir\MenuGenerator;
 
-use Kebir\MenuGenerator\Repository\MenuRepository;
-
 class Builder
 {
     /**
