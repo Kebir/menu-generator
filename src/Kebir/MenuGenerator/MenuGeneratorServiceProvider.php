@@ -26,7 +26,6 @@ class MenuGeneratorServiceProvider extends IlluminateServiceProvider
      */
     public function boot()
     {
-        $this->package('kebir/menu-generator');
     }
 
     public function register()
