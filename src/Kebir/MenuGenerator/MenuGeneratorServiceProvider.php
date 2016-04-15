@@ -80,7 +80,7 @@ class MenuGeneratorServiceProvider extends IlluminateServiceProvider
 
     public function registerRenderer()
     {
-        $this->app->bindShared('menu_renderer', function (App $app) {
+        $this->app->singleton('menu_renderer', function (App $app) {
             return new Renderer\HtmlListRenderer($app->make('Kebir\MenuGenerator\Selector\Selector'));
         });
     }
