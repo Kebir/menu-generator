@@ -52,7 +52,9 @@ class MenuItem
     /**
      * Set the name of the menu.
      *
-     * @return string.
+     * @param string $name
+     *
+     * @return string .
      */
     public function setName($name)
     {
@@ -62,7 +64,9 @@ class MenuItem
     /**
      * Set the URL of the menu.
      *
-     * @return string.
+     * @param string $url
+     *
+     * @return string .
      */
     public function setUrl($url)
     {
@@ -72,7 +76,9 @@ class MenuItem
     /**
      * Adds a new item to the menu.
      *
-     * @return string.
+     * @param MenuItem $item
+     *
+     * @return string
      */
     public function add(MenuItem $item)
     {

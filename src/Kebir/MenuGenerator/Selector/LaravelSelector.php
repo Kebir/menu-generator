@@ -2,7 +2,6 @@
 
 namespace Kebir\MenuGenerator\Selector;
 
-use Kebir\MenuGenerator\Selector\SimpleUrlSelector;
 use Kebir\MenuGenerator\MenuItem;
 
 class LaravelSelector extends SimpleUrlSelector

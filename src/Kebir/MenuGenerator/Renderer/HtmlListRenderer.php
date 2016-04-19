@@ -8,12 +8,12 @@ use Kebir\MenuGenerator\Selector\Selector;
 class HtmlListRenderer implements MenuRenderer
 {
     /**
-     * @var Kebir\MenuGenerator\Selector\Selector
+     * @var Selector
      */
     protected $selector;
 
     /**
-     * @param Kebir\MenuGenerator\Selector\Selector $selector The menu selector.
+     * @param Selector $selector The menu selector.
      */
     public function __construct(Selector $selector)
     {

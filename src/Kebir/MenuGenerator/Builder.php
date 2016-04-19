@@ -10,14 +10,14 @@ class Builder
     private $processed_menus = array();
 
     /**
-     * Builds a list of MenuItem object given an array of menus informations.
+     * Builds a list of MenuItem object given an array of menus information.
      * Each menus in the provided list, should have the following index:
      *  - id: The id of the menu.
      *  - name: The name of the menu.
      *  - url: The url of the menu.
      *  - parent_id: The id of the parent element of this menu (Menu without parents should have 0).
      *
-     * @param  array $menus The array of menus informations.
+     * @param  array $menus The array of menus information.
      *
      * @return array
      */
@@ -33,7 +33,7 @@ class Builder
     /**
      * Build the menus.
      *
-     * @param  array   $menus_list The list of menu informations
+     * @param  array   $menus_list The list of menu information
      * @param  integer $parent     The parent id to build.
      *
      * @return array
@@ -65,7 +65,7 @@ class Builder
     /**
      * Check if the menu is already processed.
      *
-     * @param  array $menu The menu informations.
+     * @param  array $menu The menu information.
      *
      * @return boolean
      */
@@ -77,7 +77,7 @@ class Builder
     /**
      * Set the menu as "processed".
      *
-     * @param array $menu The menu informations.
+     * @param array $menu The menu information.
      */
     private function setProcessed($menu)
     {

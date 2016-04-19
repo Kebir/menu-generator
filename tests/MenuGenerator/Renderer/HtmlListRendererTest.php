@@ -3,6 +3,7 @@
 use Kebir\MenuGenerator\MenuItem;
 use Kebir\MenuGenerator\Renderer\HtmlListRenderer;
 use Kebir\MenuGenerator\Selector\SimpleUrlSelector;
+use Symfony\Component\DomCrawler\Crawler;
 
 class HtmlListRendererTest extends PHPUnit_Framework_TestCase
 {
@@ -22,34 +23,12 @@ class HtmlListRendererTest extends PHPUnit_Framework_TestCase
         $renderer = new HtmlListRenderer($selector);
         $output = $renderer->render($menu);
 
-        //Prepare the expectations.
-        $matcher1 = array(
-            'tag' => 'li',
-            'attributes' => array('class' => 'kebir-menu level-1 selected has-sub-menu'),
-            'child' => array(
-                'tag' => 'ul',
-                'attributes' => array('class' => 'kebir-sub-menu'),
-                'child' => array(
-                    'tag' => 'li',
-                    'attributes' => array('class' => 'kebir-menu level-2 selected')
-                )
-            )
-        );
-        $matcher2 = array(
-            'tag' => 'li',
-            'child' => array(
-                'tag' => 'a',
-                'attributes' => array('href' => '/url1'),
-                'content' => 'Menu 1'
-            ),
-            'descendant' => array(
-                'tag' => 'a',
-                'attributes' => array('href' => '/url2'),
-                'content' => 'Menu 2'
-            ),
-        );
+        $crawler = new Crawler($output);
 
-        $this->assertTag($matcher1, $output);
-        $this->assertTag($matcher2, $output);
+        $this->assertEquals(1, $crawler->filter('.kebir-menu.level-1.has-sub-menu')->count());
+        $this->assertEquals(1, $crawler->filter('.kebir-menu.level-1.selected.has-sub-menu')->count());
+        $this->assertEquals(1, $crawler->filter('.kebir-menu.level-2.selected')->count());
+        $this->assertEquals(1, $crawler->filter('.kebir-menu > a[href="/url1"]')->count());
+        $this->assertEquals(1, $crawler->filter('.kebir-menu .kebir-menu.level-2 > a[href="/url2"]')->count());
     }
 }
