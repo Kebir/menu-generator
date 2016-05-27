@@ -26,6 +26,9 @@ class MenuGeneratorServiceProvider extends IlluminateServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/../../config/config.php' => config_path('menu.php'),
+        ]);
     }
 
     public function register()
@@ -41,9 +44,9 @@ class MenuGeneratorServiceProvider extends IlluminateServiceProvider
     {
         $this->app->bind('Kebir\MenuGenerator\Selector\Selector', function (App $app) {
             $current_url = $app['request']->url();
-            $linked_urls_checker = $app->make('linked_urls_checker');
-            $linked_actions_checker = $app->make('linked_actions_checker');
-            $linked_routes_checker = $app->make('linked_routes_checker');
+            $linked_urls_checker = $app->make('menu.checkers.urls');
+            $linked_actions_checker = $app->make('menu.checkers.actions');
+            $linked_routes_checker = $app->make('menu.checkers.routes');
 
             return new LaravelSelector(
                 $current_url,
@@ -56,23 +59,23 @@ class MenuGeneratorServiceProvider extends IlluminateServiceProvider
 
     protected function registerCheckers()
     {
-        $this->app->bind('linked_urls_checker', function (App $app) {
+        $this->app->bind('menu.checkers.urls', function (App $app) {
             $current_url = $app['request']->url();
-            $linked_urls = $app['config']->get('menu-generator::linked_urls', array());
+            $linked_urls = $app['config']->get('menu.checkers.urls', array());
 
             return new LinkedUrlsChecker($current_url, $linked_urls);
         });
 
-        $this->app->bind('linked_actions_checker', function (App $app) {
+        $this->app->bind('menu.checkers.actions', function (App $app) {
             $current_route_action = $app['router']->currentRouteAction();
-            $linked_actions = $app['config']->get('menu-generator::linked_actions', array());
+            $linked_actions = $app['config']->get('menu.checkers.actions', array());
 
             return new LinkedActionsChecker($current_route_action, $linked_actions);
         });
 
-        $this->app->bind('linked_routes_checker', function (App $app) {
+        $this->app->bind('menu.checkers.routes', function (App $app) {
             $current_route = $app['router']->currentRouteName();
-            $linked_routes = $app['config']->get('menu-generator::linked_routes', array());
+            $linked_routes = $app['config']->get('menu.checkers.routes', array());
 
             return new LinkedRoutesChecker($current_route, $linked_routes);
         });
@@ -80,13 +83,13 @@ class MenuGeneratorServiceProvider extends IlluminateServiceProvider
 
     public function registerRenderer()
     {
-        $this->app->singleton('menu_renderer', function (App $app) {
+        $this->app->singleton('menu.renderer', function (App $app) {
             return new Renderer\HtmlListRenderer($app->make('Kebir\MenuGenerator\Selector\Selector'));
         });
     }
 
     public function provides()
     {
-        return array('menu_renderer', 'Kebir\MenuGenerator\Selector\Selector');
+        return array('menu.renderer', 'Kebir\MenuGenerator\Selector\Selector');
     }
 }

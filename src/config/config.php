@@ -1,16 +1,16 @@
 <?php
 
-return array(
+return [
 
-    'linked_urls' => array(
+    'linked_urls' => [
         //'/users/1/edit' => '/users'
-    ),
+    ],
 
-    'linked_actions' => array(
+    'linked_actions' => [
         //'UsersController@edit' => '/users'
-    ),
+    ],
 
-    'linked_routes' => array(
+    'linked_routes' => [
         //'user_edit_path' => '/users'
-    )
-);
+    ]
+];

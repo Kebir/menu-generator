@@ -14,6 +14,6 @@ class Renderer extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'menu_renderer';
+        return 'menu.renderer';
     }
 }
