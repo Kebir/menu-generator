@@ -27,7 +27,7 @@ class MenuGeneratorServiceProvider extends IlluminateServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../../config/config.php' => config_path('menu.php'),
+            __DIR__.'/../../config/menu.php' => config_path('menu.php'),
         ]);
     }
 
